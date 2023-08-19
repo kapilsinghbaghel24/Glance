@@ -2,11 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
-import { BsPlay, BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
+import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
+import { Video } from '@/types';
+import { NextPage } from 'next';
 
+interface VideoCardProps {
+    post: Video;
+}
 
-const VideoCard = ({ post }: { post: any }) => {
+const VideoCard: NextPage<VideoCardProps> = ({ post }) => {
     const [isHover, setIsHover] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -44,8 +49,8 @@ const VideoCard = ({ post }: { post: any }) => {
                         <Link href="/">
                             <>
                                 <Image
-                                    width={62}
-                                    height={62}
+                                    width={40}
+                                    height={40}
                                     className='rounded-full'
                                     src={post.postedBy.image}
                                     alt='profile-img'
@@ -71,7 +76,7 @@ const VideoCard = ({ post }: { post: any }) => {
                     onMouseEnter={() => setIsHover(true)}
                     onMouseLeave={() => setIsHover(false)}
                     className='rounded-3xl' >
-                    <Link href="/">
+                    <Link href={`/detail/${post._id}`}>
                         <video
                             ref={videoRef}
                             loop
@@ -83,20 +88,20 @@ const VideoCard = ({ post }: { post: any }) => {
                         <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] p-3'>
                             {playing ? (
                                 <button onClick={onVideoPress} title='Pause'>
-                                    <BsFillPauseFill className='text-white text-2xl lg:text-4xl' />
+                                    <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             ) : (
                                 <button onClick={onVideoPress} title='Play'>
-                                    <BsFillPlayFill className='text-white text-2xl lg:text-4xl' />
+                                    <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             )}
                             {isVideoMuted ? (
                                 <button onClick={onVolumePress} title='volume-btn'>
-                                    <HiVolumeOff className='text-white text-2xl lg:text-4xl' />
+                                    <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             ) : (
                                 <button onClick={onVolumePress} title='volume-btn'>
-                                    <HiVolumeUp className='text-white text-2xl lg:text-4xl' />
+                                    <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             )}
                         </div>

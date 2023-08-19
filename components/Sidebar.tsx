@@ -11,7 +11,9 @@ import Footer from "./Footer";
 const Sidebar = () => {
     const [showSidebar, setShowSidebar] = useState(true);
 
-    const normalLink = 'flex items-center justify-center gap-3 hover:bg-primary p-3 xl:justify-start cursor-pointer font-semibold text-[#f51997]'
+    const userProfile = false;
+
+    const normalLink = 'flex items-center justify-center gap-3 hover:bg-primary p-3 xl:justify-start cursor-pointer font-semibold text-[#f51997] rounded'
 
     return (
         <div>
@@ -33,14 +35,6 @@ const Sidebar = () => {
                                 </div>
                             </Link>
                         </div>
-                        {true && (
-                            <div className="px-2 py-4 hidden xl:block">
-                                <p className="text-gray-400" >Log in to like and comment on videos</p>
-                                <div onClick={() =>{}} className="pr-4">
-                                    <button className="bg-white text-lg text-[#f51997] border-[1px] border-[#f5e1997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#f51997] cursor-pointer">Log in</button>
-                                </div>
-                            </div>
-                        )}
                         <Discover />
                         <SuggestedAccounts />
                         <Footer />

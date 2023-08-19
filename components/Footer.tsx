@@ -20,7 +20,7 @@ const Footer = () => {
             <List items={footerList1} mt={false} />
             <List items={footerList2} mt />
             <List items={footerList3} mt />
-            <p className="text-sm text-gray-400 mt-5">2023 GLANCE</p>
+            <p className="text-sm text-gray-400 mt-5">&#169; 2023 GLANCE</p>
         </div>
     );
 }

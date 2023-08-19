@@ -1,9 +1,9 @@
 
-interface IProps {
+interface NoResultsProps {
     text: string;
 }
 
-const NoResults = ({ text }: IProps) => {
+const NoResults = ({ text }: NoResultsProps) => {
     return (
         <div>
             NoResults

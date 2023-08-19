@@ -2,17 +2,18 @@ import NoResults from '@/components/NoResults';
 import VideoCard from '@/components/VideoCard';
 import axios from 'axios';
 import React from 'react';
+import { Video } from '../types';
 
-// interface HomeProps{
-//   videos:
-// }
+interface HomeProps {
+  videos: Video[];
+}
 
-const Home: React.FC<any> = ({ videos }) => {
+const Home = ({ videos }: HomeProps) => {
   console.log(videos)
   return (
     <div className='flex flex-col gap-10 videos h-full' >
       {videos.length ? (
-        videos.map((video: any) => (
+        videos.map((video: Video) => (
           <VideoCard post={video} key={video._id} />
         ))
       ) : (

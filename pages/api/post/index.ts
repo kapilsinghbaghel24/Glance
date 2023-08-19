@@ -10,4 +10,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         res.status(200).json(data);
     }
+
+    if(req.method === 'POST'){
+        const document = req.body;
+
+        try {
+         await client.create(document);
+         res.status(201).json({message: 'Video created'});
+        } catch (error) {
+            res.status(400).json({message: 'Something went wrong'});
+        }
+    }
 }
