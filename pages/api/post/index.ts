@@ -6,19 +6,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
         const query = allPostsQuery();
 
-        const data = await client.fetch(query);
+        try {
+            const data = await client.fetch(query);
 
-        res.status(200).json(data);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(400).json({ message: 'Something went wrong' });
+        }
     }
 
-    if(req.method === 'POST'){
+    if (req.method === 'POST') {
         const document = req.body;
 
         try {
-         await client.create(document);
-         res.status(201).json({message: 'Video created'});
+            await client.create(document);
+            res.status(201).json({ message: 'Video created' });
         } catch (error) {
-            res.status(400).json({message: 'Something went wrong'});
+            res.status(400).json({ message: 'Something went wrong' });
         }
     }
 }

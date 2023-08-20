@@ -28,18 +28,11 @@ const VideoCard: NextPage<VideoCardProps> = ({ post }) => {
         }
     }
 
-    const onVolumePress = () => {
-        if (isVideoMuted) {
-            let video = videoRef?.current;
-            video.muted = false;
-            setIsVideoMuted(false);
-
-        } else {
-            let video = videoRef?.current;
-            video.muted = true;
-            setIsVideoMuted(true);
-        }
-    }
+    useEffect(()=>{
+     if(videoRef?.current){
+         videoRef.current.muted = isVideoMuted;
+     }
+    },[isVideoMuted]);
 
     return (
         <div className='flex flex-col border-b-2 border-gray-200 pb-6'>
@@ -96,11 +89,11 @@ const VideoCard: NextPage<VideoCardProps> = ({ post }) => {
                                 </button>
                             )}
                             {isVideoMuted ? (
-                                <button onClick={onVolumePress} title='volume-btn'>
+                                <button onClick={()=>setIsVideoMuted(false)} title='volume-btn'>
                                     <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             ) : (
-                                <button onClick={onVolumePress} title='volume-btn'>
+                                <button onClick={()=>setIsVideoMuted(true)} title='volume-btn'>
                                     <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
                                 </button>
                             )}

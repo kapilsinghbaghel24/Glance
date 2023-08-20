@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const user = req.body;
 
         try {
-            client.createIfNotExists(user);
+            await client.createIfNotExists(user);
 
             res.status(200).json('Login Success');
         } catch (err) {
